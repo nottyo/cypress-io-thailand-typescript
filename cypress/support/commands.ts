@@ -1,13 +1,12 @@
+/// <reference types="cypress" />
 declare global {
   namespace Cypress {
     interface Chainable {
       /**
-       * Yield meta tag element
-       * @memberof Cypress.Chainable
-       * @example
-       * cy.metaTag('og:image').should('have.attr', 'content');
-       */
-      metaTag: (property: string) => Chainable<Element>
+       * Custom command to select meta tag element
+       * @example cy.metaTag('og:image')
+      */
+      metaTag(property: string): Chainable<Element>
     }
   }
 }
@@ -17,7 +16,7 @@ declare global {
  * @param property meta tag property
  * @example metaTag('og:image') => get meta element
  */
-export const metaTag = (property: string) => {
+export function metaTag(property: string): any {
   return cy.get(`meta[property="${property}"]`)
 }
 
